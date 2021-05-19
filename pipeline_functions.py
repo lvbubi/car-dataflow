@@ -25,10 +25,10 @@ def list_blobs_with_prefix(bucket_name, prefix, delimiter=None):
 
 
 class CloudFunctionFn(beam.DoFn, ABC):
-    def __init__(self, function_base, function, param_name):
+    def __init__(self, function_base, configuration: dict):
         self.function_base = function_base
-        self.function = function
-        self.param_name = param_name
+        self.function = configuration['function']
+        self.param_name = configuration['param']
 
     def process(self, element, *args, **kwargs):
         print(f'args: {args}')
