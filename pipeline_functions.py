@@ -55,7 +55,7 @@ class FirestoreWriteDoFn(beam.DoFn, ABC):
         print(f'element: {element}')
         data = json.loads(element)
 
-        car_document = self.doc_ref.document('audi')
+        car_document = self.doc_ref.document(data['car_type'])
 
         print(car_document.set({
             "prices": data['prices'],
